@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>RAVA STORE | Minecraft</title>
+    <style>
+/* =========================
+   1. RESET & THEME
+   ========================= */
+      *{box-sizing:border-box;margin:0;padding:0}
+      :root{--bg:#07100a;--panel:#101d12;--green:#55d63b;--green2:#2c9d2c;--line:#29462c;--text:#efffea;--muted:#a9bea9}
+      body{font-family:Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+      body:before{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-gradient(rgba(85,214,59,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(85,214,59,.07) 1px,transparent 1px);background-size:42px 42px;transform:perspective(500px) rotateX(55deg) scale(1.8);transform-origin:center bottom}
+      body:after{content:"E = mc²     F = ma     v = d/t     p = mv     λ = h/p";position:fixed;inset:0;z-index:-1;opacity:.08;font:700 28px monospace;line-height:130px;word-spacing:30px;pointer-events:none;transform:rotate(-8deg)}
+      header{position:sticky;top:0;z-index:20;background:rgba(7,16,10,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+      .nav{max-width:1150px;margin:auto;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+      .logo{font-weight:1000;font-size:25px;letter-spacing:2px;color:#7cff62;text-shadow:3px 3px #173a16}
+      .logo small{display:block;font-size:10px;letter-spacing:4px;color:#fff;text-shadow:none}
+      nav{display:flex;gap:8px;align-items:center}
+      nav a,.cartBtn{color:#fff;text-decoration:none;padding:10px 13px;border:1px solid transparent;border-radius:8px;background:transparent;cursor:pointer}
+      nav a:hover,.cartBtn:hover{border-color:var(--green);background:#102313}
+      .hero{max-width:1150px;margin:auto;padding:75px 20px 55px;display:grid;grid-template-columns:1.2fr .8fr;gap:35px;align-items:center}
+      .badge{display:inline-block;padding:7px 11px;border:1px solid var(--green2);border-radius:99px;color:#8aff72;background:#0d2410;font-size:12px;margin-bottom:18px}
+      h1{font-size:clamp(42px,8vw,82px);line-height:.9;margin-bottom:20px}
+      h1 span{color:var(--green)}
+      .hero p{max-width:650px;color:var(--muted);line-height:1.7;margin-bottom:25px}
+      .btn{border:0;border-radius:9px;padding:13px 18px;font-weight:800;cursor:pointer;background:var(--green);color:#061006}
+      .btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+      .heroButtons{display:flex;gap:10px;flex-wrap:wrap}
+      .character{height:330px;display:flex;align-items:end;justify-content:center;gap:55px}
+      .person{position:relative;width:105px;height:270px}
+      .head{position:absolute;top:0;left:10px;width:85px;height:85px;border:5px solid #171b12;box-shadow:0 0 0 4px rgba(85,214,59,.18)}
+      .steve .head{background:#b8794e}.alex .head{background:#d89c72}
+      .hair{position:absolute;top:0;left:0;width:100%;height:27px;background:#5b3b27}
+      .alex .hair{background:#a65b2e;height:38px}
+      .eye{position:absolute;top:37px;width:11px;height:11px;background:#fff;border:2px solid #111}
+      .eye.l{left:18px}.eye.r{right:18px}.steve .eye:after,.alex .eye:after{content:"";display:block;width:5px;height:5px;background:#39f;margin:1px}
+      .mouth{position:absolute;left:36px;top:57px;width:15px;height:7px;background:#542d22}
+      .body{position:absolute;top:85px;left:10px;width:85px;height:105px;background:#28a9df;border:5px solid #171b12}
+      .alex .body{background:#56a846}
+      .arm{position:absolute;top:85px;width:22px;height:100px;background:#b8794e;border:5px solid #171b12}.arm.l{left:-13px}.arm.r{right:-13px}
+      .leg{position:absolute;top:185px;width:39px;height:82px;background:#493a9e;border:5px solid #171b12}.leg.l{left:10px}.leg.r{right:10px}
+      .alex .leg{background:#6b6b78}
+      section{max-width:1150px;margin:auto;padding:45px 20px}
+      .sectionTitle{text-align:center;margin-bottom:30px}.sectionTitle h2{font-size:36px}.sectionTitle p{color:var(--muted);margin-top:8px}
+      .products{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+      .card{background:rgba(16,29,18,.94);border:1px solid var(--line);border-radius:15px;padding:18px;box-shadow:0 15px 40px rgba(0,0,0,.2)}
+      .productVisual{height:190px;border-radius:10px;background:linear-gradient(145deg,#1b421f,#60402a);display:flex;align-items:center;justify-content:center;margin-bottom:15px;overflow:hidden}.mcLogo{width:205px;text-align:center;transform:skewY(-2deg);filter:drop-shadow(0 5px 0 #071007)}.mcBlock{width:78px;height:58px;margin:0 auto 5px;background:linear-gradient(135deg,#79d34b 0 32%,#3c9b31 33% 66%,#235c27 67%);border:5px solid #172317;box-shadow:inset 0 -9px 0 rgba(0,0,0,.22)}.mcText{font:1000 24px Arial,sans-serif;letter-spacing:-1px;color:#fff;text-shadow:3px 3px 0 #111,-1px -1px 0 #111}.mcSub{font:900 12px monospace;letter-spacing:5px;color:#7cff62;margin-top:3px}
+      .miniPerson{transform:scale(.58)}
+      .card h3{font-size:20px;margin-bottom:6px}.card p{color:var(--muted);font-size:14px;line-height:1.5;min-height:42px}
+      .price{font-size:22px;font-weight:900;color:#7cff62;margin:15px 0}
+      .card .btn{width:100%}
+      .features{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+      .feature{padding:25px;border:1px solid var(--line);border-radius:14px;background:#0d1910;text-align:center}
+      .feature b{display:block;font-size:30px;margin-bottom:10px}.feature p{color:var(--muted);line-height:1.5}
+      footer{border-top:1px solid var(--line);text-align:center;padding:30px 20px;color:var(--muted);margin-top:30px}
+      .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:50;padding:15px;align-items:center;justify-content:center}
+      .overlay.show{display:flex}
+      .modal{width:min(600px,100%);max-height:90vh;overflow:auto;background:#0d1810;border:1px solid var(--green2);border-radius:16px;padding:22px}
+      .modalHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+      .close{border:0;background:transparent;color:#fff;font-size:28px;cursor:pointer}
+      .cartItem{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+      .cartItem small{display:block;color:var(--muted);margin-top:4px}
+      .qty{display:flex;align-items:center;gap:7px}.qty button{width:30px;height:30px;border:1px solid var(--line);background:#172519;color:#fff;border-radius:5px;cursor:pointer}
+      .remove{border:0;background:#5b2020;color:#fff;padding:7px;border-radius:5px;cursor:pointer}
+      .total{font-size:22px;font-weight:900;text-align:right;margin:18px 0;color:#7cff62}
+      .form{display:grid;gap:10px}.form label{font-size:13px;color:var(--muted)}.form input,.form select{width:100%;padding:12px;border-radius:8px;border:1px solid var(--line);background:#07100a;color:#fff;outline:none}
+      .empty{text-align:center;color:var(--muted);padding:35px}
+      .notice{font-size:12px;color:#ffcf70;margin:10px 0;line-height:1.5}
+      @media(max-width:800px){.hero{grid-template-columns:1fr;text-align:center}.hero p{margin-left:auto;margin-right:auto}.heroButtons{justify-content:center}.character{height:290px}.products,.features{grid-template-columns:1fr 1fr}}
+      @media(max-width:560px){nav a{display:none}.products,.features{grid-template-columns:1fr}.nav{padding:12px}.hero{padding-top:45px}.character{gap:20px;transform:scale(.85)}.cartItem{grid-template-columns:1fr auto}.cartItem .remove{grid-column:2}}
+    /* =========================
+   2. RESPONSIVE DESIGN
+   ========================= */
+</style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">MINECRAFT<small>RAVA STORE</small></div>
+      <nav><a href="#home">Home</a><a href="#produk">Produk</a><a href="#keunggulan">Keunggulan</a><button class="cartBtn" onclick="openCart()">🛒 Keranjang (<span id="cartCount">0</span>)</button></nav>
+    </div>
+</header>
+<main>
+  <section class="hero" id="home">
+    <div>
+      <span class="badge">MINECRAFT × PHYSICS</span>
+      <h1>BUILD YOUR <span>WORLD.</span></h1>
+      <p>Temukan Minecraft dan skin karakter untuk dunia gaming kamu. Pilih produk, masukkan ke keranjang, lalu checkout langsung melalui WhatsApp.</p>
+      <div class="heroButtons"><button class="btn" onclick="document.getElementById('produk').scrollIntoView({behavior:'smooth'})">🛒 Lihat Produk</button><button class="btn" onclick="openCart()">Keranjang</button></div>
+    </div>
+  <div class="character">
+    <div class="person steve"><div class="head"><i class="hair"></i><i class="eye l"></i><i class="eye r"></i><i class="mouth"></i></div><div class="body"></div><i class="arm l"></i><i class="arm r"></i><i class="leg l"></i><i class="leg r"></i></div>
+    <div class="person alex"><div class="head"><i class="hair"></i><i class="eye l"></i><i class="eye r"></i><i class="mouth"></i></div><div class="body"></div><i class="arm l"></i><i class="arm r"></i><i class="leg l"></i><i class="leg r"></i></div>
+  </div>
+</section>
+<section id="produk">
+  <div class="sectionTitle"><h2>Produk</h2><p>Pilih produk lalu tekan tombol beli.</p></div>
+  <div class="products">
+    <article class="card">
+      <div class="productVisual"><div class="mcLogo"><div class="mcBlock"></div><div class="mcText">MINECRAFT</div><div class="mcSub">BEDROCK</div></div></div>
+      <h3>Minecraft Bedrock</h3><p>Minecraft Bedrock Edition untuk petualangan dan membangun dunia.</p><div class="price">Rp20.000</div>
+      <button class="btn" onclick="addToCart('minecraft','Minecraft Bedrock',20000)">🛒 Tambah ke Keranjang</button>
+    </article>
+  <article class="card">
+    <div class="productVisual"><div class="person steve miniPerson"><div class="head"><i class="hair"></i><i class="eye l"></i><i class="eye r"></i><i class="mouth"></i></div><div class="body"></div><i class="arm l"></i><i class="arm r"></i><i class="leg l"></i><i class="leg r"></i></div></div>
+    <h3>Skin Steve</h3><p>Skin karakter Steve untuk melengkapi tampilan Minecraft kamu.</p><div class="price">Rp10.000</div>
+    <button class="btn" onclick="addToCart('steve','Skin Steve',10000)">🛒 Tambah ke Keranjang</button>
+  </article>
+<article class="card">
+  <div class="productVisual"><div class="person alex miniPerson"><div class="head"><i class="hair"></i><i class="eye l"></i><i class="eye r"></i><i class="mouth"></i></div><div class="body"></div><i class="arm l"></i><i class="arm r"></i><i class="leg l"></i><i class="leg r"></i></div></div>
+  <h3>Skin Alex</h3><p>Skin karakter Alex untuk tampilan alternatif di Minecraft.</p><div class="price">Rp10.000</div>
+  <button class="btn" onclick="addToCart('alex','Skin Alex',10000)">🛒 Tambah ke Keranjang</button>
+</article>
+</div>
+</section>
+<section id="keunggulan">
+  <div class="sectionTitle"><h2>Kenapa Rava Store?</h2><p>Simple, cepat, dan mudah digunakan dari HP.</p></div>
+  <div class="features">
+    <div class="feature"><b>⚡</b><h3>Praktis</h3><p>Pilih produk dan masukkan ke keranjang dalam satu klik.</p></div>
+    <div class="feature"><b>🛒</b><h3>Keranjang</h3><p>Jumlah dan total harga dihitung otomatis.</p></div>
+    <div class="feature"><b>📱</b><h3>WhatsApp</h3><p>Pesanan dikirim ke WhatsApp admin dengan format otomatis.</p></div>
+  </div>
+</section>
+</main>
+<footer>© 2026 RAVA STORE — Minecraft Digital Store</footer>
+<div class="overlay" id="cartOverlay">
+  <div class="modal">
+    <div class="modalHead"><h2>🛒 Keranjang</h2><button class="close" onclick="closeCart()">×</button></div>
+    <div id="cartList"></div>
+    <div class="total">Total: <span id="cartTotal">Rp0</span></div>
+    <div class="form">
+      <label>Nama</label><input id="customerName" type="text" placeholder="Nama kamu">
+      <label>Minecraft Username</label><input id="minecraftUser" type="text" placeholder="Contoh: RavaAksara">
+      <label>Metode Pembayaran</label><select id="payment"><option value="DANA">DANA</option><option value="QRIS">QRIS</option></select>
+    </div>
+  <p class="notice">Pastikan nama dan username sudah benar sebelum checkout. Nomor WhatsApp admin harus diatur di kode JavaScript.</p>
+  <button class="btn" style="width:100%;margin-top:8px" onclick="checkout()">💬 BELI / CHECKOUT VIA WHATSAPP</button>
+</div>
+</div>
+<script>
+/* =========================
+   CART & CHECKOUT
+   ========================= */
+  const ADMIN_WHATSAPP="6282260539979"; // GANTI dengan nomor WhatsApp admin, contoh: 628xxxxxxxxxx
+  let cart=JSON.parse(localStorage.getItem("rava_cart")||"{}");
+  function rupiah(n){return "Rp"+Number(n).toLocaleString("id-ID")}
+  function save(){localStorage.setItem("rava_cart",JSON.stringify(cart));renderCart()}
+  function addToCart(id,name,price){
+  if(!cart[id])cart[id]={id,name,price,qty:0};
+  cart[id].qty++;
+  save();
+  openCart();
+  }
+  function changeQty(id,amount){
+  if(!cart[id])return;
+  cart[id].qty+=amount;
+  if(cart[id].qty<=0)delete cart[id];
+  save();
+  }
+  function removeItem(id){delete cart[id];save()}
+  function getTotal(){return Object.values(cart).reduce((s,p)=>s+p.price*p.qty,0)}
+  function getCount(){return Object.values(cart).reduce((s,p)=>s+p.qty,0)}
+  function renderCart(){
+  const list=document.getElementById("cartList");
+  const items=Object.values(cart);
+  document.getElementById("cartCount").textContent=getCount();
+  document.getElementById("cartTotal").textContent=rupiah(getTotal());
+  if(!items.length){list.innerHTML='<div class="empty">Keranjang masih kosong.<br>Yuk pilih produk dulu!</div>';return}
+  list.innerHTML=items.map(p=>`
+  <div class="cartItem">
+    <div><b>${p.name}</b><small>${rupiah(p.price)} × ${p.qty} = ${rupiah(p.price*p.qty)}</small></div>
+    <div class="qty"><button onclick="changeQty('${p.id}',-1)">−</button><b>${p.qty}</b><button onclick="changeQty('${p.id}',1)">+</button></div>
+    <button class="remove" onclick="removeItem('${p.id}')">Hapus</button>
+  </div>`).join("");
+}
+function openCart(){document.getElementById("cartOverlay").classList.add("show");renderCart()}
+function closeCart(){document.getElementById("cartOverlay").classList.remove("show")}
+function checkout(){
+const items=Object.values(cart);
+if(!items.length){alert("Keranjang masih kosong!");return}
+const name=document.getElementById("customerName").value.trim();
+const user=document.getElementById("minecraftUser").value.trim();
+const payment=document.getElementById("payment").value;
+if(!name||!user){alert("Isi Nama dan Minecraft Username terlebih dahulu.");return}
+if(ADMIN_WHATSAPP==="6281234567890"){alert("Nomor WhatsApp admin masih nomor contoh. Ganti ADMIN_WHATSAPP di kode JavaScript dengan nomor admin kamu.");return}
+let message="Halo Rava Store! Saya ingin membeli:%0A%0A";
+items.forEach(p=>{message+=`• ${p.name} x${p.qty} = ${rupiah(p.price*p.qty)}%0A`});
+message+=`%0ATotal: ${rupiah(getTotal())}%0A`;
+message+=`Nama: ${encodeURIComponent(name)}%0AMinecraft Username: ${encodeURIComponent(user)}%0APembayaran: ${encodeURIComponent(payment)}`;
+window.open("https://wa.me/"+ADMIN_WHATSAPP+"?text="+message,"_blank");
+}
+document.getElementById("cartOverlay").addEventListener("click",e=>{if(e.target.id==="cartOverlay")closeCart()});
+renderCart();
+</script>
+</body>
+</html>
